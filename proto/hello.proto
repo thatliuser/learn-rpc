@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message ServerVersion {
+    int32 major = 1;
+    int32 minor = 2;
+    int32 patch = 3;
+}
+
+service Idk {
+    rpc GetVersion(google.protobuf.Empty) returns (ServerVersion) {}
+}

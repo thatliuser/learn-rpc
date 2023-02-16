@@ -12,8 +12,8 @@
     };
   in
   {
-    packages."${system}" = {
-      server = mkPackage ./server.nix;
+    packages."${system}" = rec {
+      server = mkPackage ./pkgs/server.nix;
       # client = mkPackge ./client.nix;
     };
   };
