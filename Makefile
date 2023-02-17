@@ -1,4 +1,4 @@
-LDFLAGS=-lgrpc++ -lprotobuf -lgpr
+LDFLAGS=-lgrpc++ -lprotobuf -lgrpc -lgpr
 PROTOC=protoc -I proto/
 
 rpc-server: server/hello.pb.o server/hello.grpc.pb.o server/main.o server/users.o
@@ -10,7 +10,7 @@ rpc-client: client/hello.pb.o client/hello.grpc.pb.o client/main.o
 proto: server/hello.grpc.pb.cc server/hello.pb.cc client/hello.grpc.pb.cc client/hello.pb.cc
 
 clean:
-	rm server/*.pb.* client/*.pb.*
+	rm -f **/*.pb.cc **/*.pb.h **/*.o rpc-server rpc-client
 
 server/%.pb.cc: proto/%.proto
 	$(PROTOC) --cpp_out=server/ $^

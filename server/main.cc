@@ -33,6 +33,23 @@ class Service : public Hello::Service {
 
         return Status::OK;
     }
+
+    virtual Status GetUser(ServerContext* ctx, const UserName* req, User* resp) override {
+        const auto& users = GetUsers();
+
+        const auto& iter = users.find(req->name());
+        if (iter == users.end()) {
+            return Status(grpc::INVALID_ARGUMENT, "User not found");
+        }
+
+        const UserInfo& info = iter->second;
+
+        resp->set_name(info.name);
+        resp->set_age(info.age);
+        resp->set_job(info.job);
+
+        return Status::OK;
+    }
 };
 
 int main() {
