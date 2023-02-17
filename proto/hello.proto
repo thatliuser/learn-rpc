@@ -3,11 +3,36 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 
 message ServerVersion {
-    int32 major = 1;
-    int32 minor = 2;
-    int32 patch = 3;
+    uint32 major = 1;
+    uint32 minor = 2;
+    uint32 patch = 3;
+}
+
+message UserName {
+    string name = 1;
+}
+
+message UserStatus {
+    bool exists = 1;
+}
+
+message User {
+    enum Job {
+        JOB_SWE = 0;
+        JOB_DESIGNER = 1;
+        JOB_MANAGER = 2;
+        JOB_CEO = 3;
+        JOB_OTHER = 4;
+    }
+
+    string name = 1;
+    uint32 age = 2;
+    Job job = 3;
 }
 
 service Hello {
     rpc GetVersion(google.protobuf.Empty) returns (ServerVersion) {}
+
+    rpc UsersExist(stream UserName) returns (stream UserStatus) {}
+    rpc GetUser(UserName) returns (User) {}
 }

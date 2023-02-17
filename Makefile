@@ -1,7 +1,7 @@
 LDFLAGS=-lgrpc++ -lprotobuf -lgpr
 PROTOC=protoc -I proto/
 
-rpc-server: server/hello.pb.o server/hello.grpc.pb.o server/main.o
+rpc-server: server/hello.pb.o server/hello.grpc.pb.o server/main.o server/users.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
 rpc-client: client/hello.pb.o client/hello.grpc.pb.o client/main.o
