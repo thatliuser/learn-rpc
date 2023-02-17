@@ -14,7 +14,7 @@
   {
     packages."${system}" = rec {
       server = mkPackage ./pkgs/server.nix;
-      # client = mkPackge ./client.nix;
+      client = mkPackage ./pkgs/client.nix;
     };
   };
 }

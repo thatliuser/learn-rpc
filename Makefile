@@ -9,3 +9,9 @@ server/%.pb.cc: proto/%.proto
 
 server/%.grpc.pb.cc: proto/%.proto
 	$(PROTOC) --grpc_out=server/ --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` $^
+
+client/%.pb.cc: proto/%.proto
+	$(PROTOC) --cpp_out=client/ $^
+
+client/%.grpc.pb.cc: proto/%.proto
+	$(PROTOC) --grpc_out=client/ --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` $^
