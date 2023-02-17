@@ -16,3 +16,4 @@ make rpc-client
 ./rpc-server &
 ./rpc-client
 ```
+You'll need to install gRPC and Protobuf for the Makefile to work.
