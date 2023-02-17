@@ -1,15 +1,17 @@
 { pkgs, stdenv, ... }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "rpc-client";
   version = "0.1.0";
 
   nativeBuildInputs = with pkgs; [
     grpc
     protobuf
-    gtkmm4
+    which
   ];
 
-  src = ./.;
+  src = ../.;
 
-  installPhase = "install -D rpc-client $out/bin/rpc-client";
+  buildPhase = "make ${pname}";
+
+  installPhase = "install -D ${pname} $out/bin/${pname}";
 }

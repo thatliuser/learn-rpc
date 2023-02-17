@@ -6,13 +6,14 @@
 #include "hello.pb.h"
 
 using google::protobuf::Empty;
+using grpc::Status;
 
 class Service : public Hello::Service {
-    virtual grpc::Status GetVersion(grpc::ServerContext* ctx, const Empty* req, ServerVersion* resp) override {
+    virtual Status GetVersion(grpc::ServerContext* ctx, const Empty* req, ServerVersion* resp) override {
         resp->set_major(0);
         resp->set_minor(1);
         resp->set_patch(0);
-        return grpc::Status::OK;
+        return Status::OK;
     };
 };
 
@@ -25,5 +26,6 @@ int main() {
         .RegisterService(&service);
 
     std::unique_ptr<grpc::Server> server = builder.BuildAndStart();
+    std::cout << "Server up and waiting...\n";
     server->Wait();
 }
