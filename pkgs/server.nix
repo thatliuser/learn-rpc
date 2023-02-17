@@ -1,6 +1,6 @@
 { pkgs, stdenv, ... }:
 stdenv.mkDerivation {
-  pname = "server";
+  pname = "rpc-server";
   version = "0.1.0";
 
   nativeBuildInputs = with pkgs; [

@@ -8,6 +8,6 @@ message ServerVersion {
     int32 patch = 3;
 }
 
-service Idk {
+service Hello {
     rpc GetVersion(google.protobuf.Empty) returns (ServerVersion) {}
 }
