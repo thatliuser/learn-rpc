@@ -3,9 +3,16 @@
 Simple gRPC example for my own educational purposes.
 
 # Running
-You must have Nix.
+For the easiest time, use Nix.
 ```sh
 nix build
 result/bin/rpc-server &
 result/bin/rpc-client
+```
+You can also just use the Makefile, but build artifacts aren't put in a different directory.
+```sh
+make rpc-server
+make rpc-client
+./rpc-server &
+./rpc-client
 ```
